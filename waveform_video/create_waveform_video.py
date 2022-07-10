@@ -18,7 +18,7 @@ import sys
 import copy
 
 try:
-    from cv2 import cv2
+    import cv2
     from docopt import docopt
     import numpy as np
     from sksound.sounds import Sound
