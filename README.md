@@ -10,6 +10,11 @@ This can be installed directly from github by the following command:
 pip install --user git+https://github.com/stakita/waveform_video_generator
 ```
 
+May need to install the `python-tk` by running the following (MacOSX):
+```
+brew install python-tk
+```
+
 ## Installed components
 
 This package installs one command line tool `create_waveform_video.py` which can be invoked by running:

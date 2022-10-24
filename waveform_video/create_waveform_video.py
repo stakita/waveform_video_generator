@@ -20,7 +20,6 @@ import copy
 try:
     import cv2
     from docopt import docopt
-    import numpy as np
     from sksound.sounds import Sound
     import matplotlib.pyplot as plt
 except ImportError as e:
