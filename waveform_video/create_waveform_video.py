@@ -16,7 +16,7 @@ Options:
 '''
 import sys
 import copy
-import datetime
+from datetime import datetime
 from dateutil.tz import tzlocal
 
 try:
