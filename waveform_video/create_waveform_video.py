@@ -16,6 +16,8 @@ Options:
 '''
 import sys
 import copy
+import datetime
+from dateutil.tz import tzlocal
 
 try:
     import cv2
@@ -79,7 +81,7 @@ def generate_waveform_video(background_image, total_seconds, output_file, fps):
     for frame in range(frames):
         update_period = 1000
         if frame % update_period == 0:
-            print('%3.2f %d %d' % (frame / 24, frame, frames))
+            print('%3.2f %d %d' % (frame / fps, frame, frames))
 
         paint_x = int(frame / frames * width)
 
@@ -92,7 +94,9 @@ def generate_waveform_video(background_image, total_seconds, output_file, fps):
 
 
 def main():
+    start_time = datetime.now(tzlocal())
     args = docopt(__doc__)
+
     input_file = args['<input_media_file>']
     output_file = args['--output']
     try:
@@ -106,6 +110,8 @@ def main():
         print(__doc__)
         return 2
 
+    print('start_time: %s' % start_time.isoformat())
+
     print('Generating waveform file "%s" (%d, %d) - channels: %d, fps: %d' % (output_file, width, height, channels, fps))
 
     background_filename = output_file + '.background.png'
@@ -115,7 +121,10 @@ def main():
 
     generate_waveform_video(background_filename, total_seconds, output_file, fps)
 
-    return 0
+    end_time = datetime.now(tzlocal())
+    total_time = end_time - start_time
+    print('end_time: %s' % end_time.isoformat())
+    print('total_time(s): %0.3f' % total_time.total_seconds())
 
 
 if __name__ == '__main__':
